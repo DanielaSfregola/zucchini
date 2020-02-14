@@ -1,0 +1,31 @@
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
+
+before_cache:
+  - find $HOME/.ivy2 -name "ivydata-*.properties" -delete
+  - find $HOME/.sbt -name "*.lock" -delete
+
+language: scala
+
+script:
+  - sbt clean coverage test coverageReport
+  - sbt coverageAggregate
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+scala:
+  - 2.13.0
+  - 2.12.8
+
+env:
+  - SBT_OPTS="-XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
+
+# whitelist
+branches:
+  only:
+    - master
