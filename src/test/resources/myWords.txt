@@ -1,4 +1,4 @@
 rabbit, lion.
 pig, horse.
-Goat@ uniCorn-rainbow
+Goat@ uniCorn23
 lion, rabbit. horse
