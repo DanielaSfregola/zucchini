@@ -1,7 +1,7 @@
 import com.typesafe.sbt.SbtGit.GitKeys._
 
 name := "zucchini"
-version := "2.9-SNAPSHOT"
+version := "0.1-SNAPSHOT"
 
 scalacOptions in Test ++= Seq("-Yrangepos", "-language:higherKinds")
 
@@ -12,16 +12,12 @@ libraryDependencies ++= {
 }
 
 libraryDependencies ++= {
-  val Magnolia = "0.12.6"
   val Scalacheck = "1.14.3"
-  val Spec2 = "4.6.0"
 
   Seq(
-    "com.propensive" %% "magnolia" % Magnolia,
     "org.scalacheck" %% "scalacheck" % Scalacheck,
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-    "org.specs2" %% "specs2-core" % Spec2 % "test",
-    "org.specs2" %% "specs2-mock" % Spec2 % "test"
+    "org.scalactic" %% "scalactic" % "3.0.8",
+    "org.scalatest" %% "scalatest" % "3.0.8" % "test"
   )
 }
 
@@ -59,10 +55,10 @@ lazy val standardSettings = Seq(
     "-unchecked",
     "-language:postfixOps",
     "-language:experimental.macros"),
-  scalacOptions in (Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath),
+  scalacOptions in(Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath),
   autoAPIMappings := true,
   apiURL := None,
-  scalacOptions in (Compile, doc) ++= {
+  scalacOptions in(Compile, doc) ++= {
     val branch = if (version.value.trim.endsWith("SNAPSHOT")) "master" else version.value
     Seq(
       "-doc-source-url",
@@ -71,5 +67,4 @@ lazy val standardSettings = Seq(
   }
 )
 
-lazy val root = (project in file("."))
-  .settings(standardSettings)
+lazy val root = (project in file(".")).settings(standardSettings)
