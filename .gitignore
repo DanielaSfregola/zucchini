@@ -5,12 +5,15 @@
 
 dist/*
 target/
+build/
+bin/
 lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
 .history
 .cache
+.cache-main
 .lib/
 ### Scala template
 *.class

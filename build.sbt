@@ -15,7 +15,9 @@ libraryDependencies ++= {
   val Scalacheck = "1.14.3"
 
   Seq(
-    "org.scalacheck" %% "scalacheck" % Scalacheck
+    "org.scalacheck" %% "scalacheck" % Scalacheck,
+    "org.scalactic" %% "scalactic" % "3.0.8",
+    "org.scalatest" %% "scalatest" % "3.0.8" % "test"
   )
 }
 
@@ -53,10 +55,10 @@ lazy val standardSettings = Seq(
     "-unchecked",
     "-language:postfixOps",
     "-language:experimental.macros"),
-  scalacOptions in (Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath),
+  scalacOptions in(Compile, doc) ++= Seq("-sourcepath", baseDirectory.value.getAbsolutePath),
   autoAPIMappings := true,
   apiURL := None,
-  scalacOptions in (Compile, doc) ++= {
+  scalacOptions in(Compile, doc) ++= {
     val branch = if (version.value.trim.endsWith("SNAPSHOT")) "master" else version.value
     Seq(
       "-doc-source-url",
