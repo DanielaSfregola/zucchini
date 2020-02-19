@@ -13,7 +13,7 @@ object Dictionary extends App {
   }
 
   private def allWords(texts: Iterator[String]): Iterator[String] = {
-    texts.flatMap(line => line.split("[^a-zA-Z0-9']+")).map(_.trim)
+    texts.flatMap(line => line.split("\\W+"))
   }
 
   println(extractUniqueWordsFromTextFile("BaconipSum.txt").mkString(","))
