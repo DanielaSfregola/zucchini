@@ -1,5 +1,7 @@
 package com.danielasfregola.zucchini
 
+import org.scalacheck.{Arbitrary, Gen}
+
 import scala.io.Source
 
 object Dictionary extends App {
@@ -16,6 +18,10 @@ object Dictionary extends App {
     texts.flatMap(line => line.split("\\W+"))
   }
 
-  println(extractUniqueWordsFromTextFile("BaconipSum.txt").mkString(","))
+  //  println(extractUniqueWordsFromTextFile("BaconipSum.txt").mkString(","))
 
+  val words: Set[String] = extractUniqueWordsFromTextFile("BaconipSum.txt")
+  val word: Arbitrary[String] = Arbitrary {
+    Gen.oneOf(words)
+  }
 }
